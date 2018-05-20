@@ -9,8 +9,11 @@ if (!isset($current_page_id) && isset($page->ID)) {
 //Get page header display setting
 $page_title = get_the_title();
 
+if (has_post_thumbnail($post->ID)) {
+    $featured_image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'large');
+}
 ?>
-	<div id="page_caption" class="hasbg parallax" style="background-image:url(http://vccw.test/wp-content/uploads/2018/05/bf1202aedf2c5b6a57d379575619a488.jpg);">
+	<div id="page_caption" class="hasbg parallax" style="background-image:url(<?php if (isset($featured_image)) { echo $featured_image[0]; } ?>)">
 		<div class="single_tour_header_content">
 			<div class="standard_wrapper">
 				<div class="single_tour_header_price">
@@ -24,6 +27,6 @@ $page_title = get_the_title();
 	</div>
 	<!-- Begin content -->
 	<?php
-		$grandtour_page_content_class = grandtour_get_page_content_class();
-	?>
+$grandtour_page_content_class = grandtour_get_page_content_class();
+?>
 	<div id="page_content_wrapper" class="hasbg">
