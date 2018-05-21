@@ -12,6 +12,39 @@
  */
 
 $nomad_single_review = 1;
+$tax_base = 'nomad-';
+
+// locations
+$locations = get_the_terms($post->ID, $tax_base . 'listing-item-location');
+$locations_list = null;
+if (is_array($locations)) {
+    $locations_list = implode(
+        ', ', array_map(
+            function ($item) {
+                return $item->name;
+            }, $locations
+        )
+    );
+}
+
+
+// get custom fields
+$prefix = 'nomad_';
+
+$email = rwmb_meta($prefix . 'email');
+$website = rwmb_meta($prefix . 'website');
+$phone_list = rwmb_meta($prefix. 'phone_number');
+if (is_array($phone_list)) {
+    $phone_numbers = implode(
+        ', ', array_map(
+            function ($item) {
+                return $item[0];
+            }, $phone_list
+        )
+    );
+} else {
+    $phone_numbers = null;
+}
 ?>
 <div class="sidebar_wrapper">
     <div class="sidebar_top"></div>
@@ -54,6 +87,35 @@ $nomad_single_review = 1;
             <div class="single_tour_content">
                 <?php the_content(); ?>
             </div>
+
+            <br class="clear" />
+            <hr>
+            <br class="clear" />
+
+            <h3>Contact Information</h3>
+
+            <div style="margin:auto;width:100%">
+                <div class="one_third">
+                    <?php if($locations_list) : ?>
+                        <p><strong>Location</strong><br/><?php echo $locations_list; ?></p>
+                    <?php endif ?>
+                    <?php if ($phone_numbers) : ?>
+                        <p><strong>Phone</strong><br/><?php echo $phone_numbers; ?></p>
+                    <?php endif ?>
+                </div>
+                <div class="one_third">
+                    <?php if ($email) : ?>
+                        <p><strong>Email</strong><br/><?php echo $email; ?></p>
+                    <?php endif ?>
+                    <?php if ($website) : ?>
+                        <p><strong>Website</strong><br/><?php echo $website; ?></p>
+                    <?php endif ?>
+                </div>
+                <div class="one_third">
+
+                </div>
+            </div>
+
             <?php
             //Display listing comments
             if (comments_open($post->ID) && !empty($nomad_single_review)) {
