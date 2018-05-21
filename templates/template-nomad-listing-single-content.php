@@ -45,10 +45,19 @@ if (is_array($phone_list)) {
 } else {
     $phone_numbers = null;
 }
+
 $facebook = rwmb_meta($prefix . 'facebook');
 $twitter = rwmb_meta($prefix . 'twitter');
 $instagram = rwmb_meta($prefix . 'instagram');
 $linkedin = rwmb_meta($prefix . 'linkedin');
+$display_social = $facebook || $twitter || $instagram || $linkedin;
+
+$number_of_rooms = rwmb_meta($prefix . 'number_of_rooms');
+$checkin_time = rwmb_meta($prefix . 'checkin_time');
+$checkout_time = rwmb_meta($prefix . 'checkout_time');
+$pricing = rwmb_meta($prefix . 'pricing');
+$nearby_things = rwmb_meta($prefix . 'nearby');
+$display_additional_info = $number_of_rooms || $checkin_time || $checkout_time || $pricing || $nearby_things;
 ?>
 <div class="sidebar_wrapper">
     <div class="sidebar_top"></div>
@@ -116,7 +125,7 @@ $linkedin = rwmb_meta($prefix . 'linkedin');
                     <?php endif ?>
                 </div>
                 <div class="one_third last">
-                    <?php if ($facebook || $twitter || $instagram || $linkedin) : ?>
+                    <?php if ($display_social) : ?>
                     <p><strong>Social Profiles</strong>
                     <div class="social_wrapper shortcode light small">
                         <ul>
@@ -153,6 +162,67 @@ $linkedin = rwmb_meta($prefix . 'linkedin');
                     <?php endif ?>
                 </div>
             </div>
+
+            <?php if ($display_additional_info) : ?>
+            <br class="clear" />
+            <hr>
+            <br class="clear" />
+
+            <h3>Additional Information</h3>
+
+            <div style="margin:auto;width:100%">
+                <div class="one_half">
+                    <div style="margin:auto;width:100%">
+                        <div class="one_half">
+                            <p>Near this place</p>
+                        </div>
+                        <div class="one_half last">
+                            <p>
+                                <?php foreach($nearby_things as $nearby_thing) : ?>
+                                    <strong><?php echo $nearby_thing[0]; ?></strong><br/>
+                                <?php endforeach ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="one_half last">
+                <div style="margin:auto;width:100%">
+                        <div class="one_half">
+                            <p>
+                                <?php if ($pricing) : ?>
+                                    Price Range</br>
+                                <?php endif ?>
+                                <?php if ($number_of_rooms) : ?>
+                                    Number of rooms</br>
+                                <?php endif ?>
+                                <?php if ($checkin_time) : ?>
+                                    Check In</br>
+                                <?php endif ?>
+                                <?php if ($checkout_time) : ?>
+                                    Check Out</br>
+                                <?php endif ?>
+                            </p>
+                        </div>
+                        <div class="one_half last">
+                            <p>
+                                <?php if ($pricing) : ?>
+                                    <?php echo $pricing; ?></br>
+                                <?php endif ?>
+                                <?php if ($number_of_rooms) : ?>
+                                    <?php echo $number_of_rooms; ?></br>
+                                <?php endif ?>
+                                <?php if ($checkin_time) : ?>
+                                    <?php echo $checkin_time; ?></br>
+                                <?php endif ?>
+                                <?php if ($checkout_time) : ?>
+                                    <?php echo $checkout_time; ?></br>
+                                <?php endif ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php endif ?>
 
             <?php
             //Display listing comments
