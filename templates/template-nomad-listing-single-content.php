@@ -45,6 +45,10 @@ if (is_array($phone_list)) {
 } else {
     $phone_numbers = null;
 }
+$facebook = rwmb_meta($prefix . 'facebook');
+$twitter = rwmb_meta($prefix . 'twitter');
+$instagram = rwmb_meta($prefix . 'instagram');
+$linkedin = rwmb_meta($prefix . 'linkedin');
 ?>
 <div class="sidebar_wrapper">
     <div class="sidebar_top"></div>
@@ -111,8 +115,42 @@ if (is_array($phone_list)) {
                         <p><strong>Website</strong><br/><?php echo $website; ?></p>
                     <?php endif ?>
                 </div>
-                <div class="one_third">
-
+                <div class="one_third last">
+                    <?php if ($facebook || $twitter || $instagram || $linkedin) : ?>
+                    <p><strong>Social Profiles</strong>
+                    <div class="social_wrapper shortcode light small">
+                        <ul>
+                            <?php if ($facebook) : ?>
+                            <li class="facebook">
+                                <a target="_blank" title="Facebook" href="<?php echo $facebook; ?>">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            </li>
+                            <?php endif ?>
+                            <?php if ($twitter) : ?>
+                            <li class="twitter">
+                                <a target="_blank" title="Twitter" href="https://twitter.com/<?php echo $twitter; ?>">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                            <?php endif ?>
+                            <?php if ($instagram) : ?>
+                            <li class="instagram">
+                                <a target="_blank" title="Instagram" href="https://instagram.com/<?php echo $instagram; ?>">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </li>
+                            <?php endif ?>
+                            <?php if ($linkedin) : ?>
+                            <li class="linkedin">
+                                <a target="_blank" title="Linked In" href="<?php echo $linkedin; ?>">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </li>
+                            <?php endif ?>
+                        </ul>
+                    </div>
+                    <?php endif ?>
                 </div>
             </div>
 
