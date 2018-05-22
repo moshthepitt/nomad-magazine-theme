@@ -7,7 +7,7 @@
  * @category Theme
  * @package  Nomad_Magazine_Theme
  * @author   Kelvin Jayanoris <kelvin@jayanoris.com>
- * @license  https://github.com/moshthepitt/nomad-magazine-theme/blob/master/LICENSE Apache 2.0
+ * @license  https://github.com/moshthepitt/nomad-magazine-theme/blob/master/LICENSE GPL-2.0+
  * @link     https://github.com/moshthepitt/nomad-magazine-theme
  */
 
