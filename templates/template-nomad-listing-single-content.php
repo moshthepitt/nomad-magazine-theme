@@ -13,13 +13,17 @@
 
 $nomad_single_review = 1;
 $tax_base = 'nomad-';
+$separator = ', ';
+
+// categories
+$category_tree = nomadGetHierarchicalTerms($tax_base . 'listing-item-category', $separator);
 
 // locations
 $locations = get_the_terms($post->ID, $tax_base . 'listing-item-location');
 $locations_list = null;
 if (is_array($locations)) {
     $locations_list = implode(
-        ', ', array_map(
+        $separator, array_map(
             function ($item) {
                 return $item->name;
             }, $locations
@@ -27,16 +31,18 @@ if (is_array($locations)) {
     );
 }
 
+// locations tree
+$location_tree = nomadGetHierarchicalTerms($tax_base . 'listing-item-location', $separator);
 
 // get custom fields
 $prefix = 'nomad_';
 
 $email = rwmb_meta($prefix . 'email');
 $website = rwmb_meta($prefix . 'website');
-$phone_list = rwmb_meta($prefix. 'phone_number');
+$phone_list = rwmb_meta($prefix . 'phone_number');
 if (is_array($phone_list)) {
     $phone_numbers = implode(
-        ', ', array_map(
+        $separator, array_map(
             function ($item) {
                 return $item[0];
             }, $phone_list
@@ -93,12 +99,13 @@ $display_additional_info = $number_of_rooms || $checkin_time || $checkout_time |
 </div>
 <?php if (have_posts()) : ?>
     <?php while (have_posts()) : ?>
-        <?php the_post(); ?>
+        <?php the_post();?>
         <div class="sidebar_content ">
-            <h1><?php the_title(); ?></h1>
+            <h1><?php the_title();?></h1>
+            <p class="nomad-tax-below-title"><strong><?php echo $location_tree ?></strong> &nbsp;&nbsp; <span class="nomad-sm"><?php echo $category_tree ?></span></p>
             <br class="clear" />
             <div class="single_tour_content">
-                <?php the_content(); ?>
+                <?php the_content();?>
             </div>
 
             <br class="clear" />
@@ -109,20 +116,20 @@ $display_additional_info = $number_of_rooms || $checkin_time || $checkout_time |
 
             <div style="margin:auto;width:100%">
                 <div class="one_third">
-                    <?php if($locations_list) : ?>
+                    <?php if ($locations_list) : ?>
                         <p><strong>Location</strong><br/><?php echo $locations_list; ?></p>
-                    <?php endif ?>
+                    <?php endif?>
                     <?php if ($phone_numbers) : ?>
                         <p><strong>Phone</strong><br/><?php echo $phone_numbers; ?></p>
-                    <?php endif ?>
+                    <?php endif?>
                 </div>
                 <div class="one_third">
                     <?php if ($email) : ?>
                         <p><strong>Email</strong><br/><?php echo $email; ?></p>
-                    <?php endif ?>
+                    <?php endif?>
                     <?php if ($website) : ?>
                         <p><strong>Website</strong><br/><?php echo $website; ?></p>
-                    <?php endif ?>
+                    <?php endif?>
                 </div>
                 <div class="one_third last">
                     <?php if ($display_social) : ?>
@@ -135,31 +142,31 @@ $display_additional_info = $number_of_rooms || $checkin_time || $checkout_time |
                                     <i class="fa fa-facebook"></i>
                                 </a>
                             </li>
-                            <?php endif ?>
+                            <?php endif?>
                             <?php if ($twitter) : ?>
                             <li class="twitter">
                                 <a target="_blank" title="Twitter" href="https://twitter.com/<?php echo $twitter; ?>">
                                     <i class="fa fa-twitter"></i>
                                 </a>
                             </li>
-                            <?php endif ?>
+                            <?php endif?>
                             <?php if ($instagram) : ?>
                             <li class="instagram">
                                 <a target="_blank" title="Instagram" href="https://instagram.com/<?php echo $instagram; ?>">
                                     <i class="fa fa-instagram"></i>
                                 </a>
                             </li>
-                            <?php endif ?>
+                            <?php endif?>
                             <?php if ($linkedin) : ?>
                             <li class="linkedin">
                                 <a target="_blank" title="Linked In" href="<?php echo $linkedin; ?>">
                                     <i class="fa fa-linkedin"></i>
                                 </a>
                             </li>
-                            <?php endif ?>
+                            <?php endif?>
                         </ul>
                     </div>
-                    <?php endif ?>
+                    <?php endif?>
                 </div>
             </div>
 
@@ -171,65 +178,72 @@ $display_additional_info = $number_of_rooms || $checkin_time || $checkout_time |
             <h3>Additional Information</h3>
 
             <div style="margin:auto;width:100%">
+                <?php if ($nearby_things) : ?>
                 <div class="one_half">
                     <div style="margin:auto;width:100%">
                         <div class="one_half">
                             <p>Near this place</p>
+                            <pre>
+                            <?php print_r($location_tree)?>
+                            </pre>
                         </div>
                         <div class="one_half last">
                             <p>
-                                <?php foreach($nearby_things as $nearby_thing) : ?>
+                                <?php foreach ($nearby_things as $nearby_thing) : ?>
                                     <strong><?php echo $nearby_thing[0]; ?></strong><br/>
-                                <?php endforeach ?>
+                                <?php endforeach?>
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="one_half last">
+                <?php else: ?>
+                <div class="one_half">
+                <?php endif?>
                 <div style="margin:auto;width:100%">
                         <div class="one_half">
                             <p>
                                 <?php if ($pricing) : ?>
                                     Price Range</br>
-                                <?php endif ?>
+                                <?php endif?>
                                 <?php if ($number_of_rooms) : ?>
                                     Number of rooms</br>
-                                <?php endif ?>
+                                <?php endif?>
                                 <?php if ($checkin_time) : ?>
                                     Check In</br>
-                                <?php endif ?>
+                                <?php endif?>
                                 <?php if ($checkout_time) : ?>
                                     Check Out</br>
-                                <?php endif ?>
+                                <?php endif?>
                             </p>
                         </div>
                         <div class="one_half last">
                             <p>
                                 <?php if ($pricing) : ?>
                                     <?php echo $pricing; ?></br>
-                                <?php endif ?>
+                                <?php endif?>
                                 <?php if ($number_of_rooms) : ?>
                                     <?php echo $number_of_rooms; ?></br>
-                                <?php endif ?>
+                                <?php endif?>
                                 <?php if ($checkin_time) : ?>
                                     <?php echo $checkin_time; ?></br>
-                                <?php endif ?>
+                                <?php endif?>
                                 <?php if ($checkout_time) : ?>
                                     <?php echo $checkout_time; ?></br>
-                                <?php endif ?>
+                                <?php endif?>
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
-            <?php endif ?>
+            <?php endif?>
 
             <?php
             //Display listing comments
             if (comments_open($post->ID) && !empty($nomad_single_review)) {
             ?>
                 <div class="fullwidth_comment_wrapper sidebar">
-                    <?php comments_template('', true); ?>
+                    <?php comments_template('', true);?>
                 </div>
             <?php
             }
