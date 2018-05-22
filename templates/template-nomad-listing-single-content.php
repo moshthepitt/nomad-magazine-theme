@@ -34,6 +34,18 @@ if (is_array($locations)) {
 // locations tree
 $location_tree = nomadGetHierarchicalTerms($tax_base . 'listing-item-location', $separator);
 
+// featutes
+$features = get_the_terms($post->ID, $tax_base . 'listing-item-feature');
+if ($features) {
+    $features = nomadSortArrayWithObjects($features, 'name');
+}
+
+// amenities
+$amenities = get_the_terms($post->ID, $tax_base . 'listing-item-amenity');
+if ($amenities) {
+    $amenities = nomadSortArrayWithObjects($amenities, 'name');
+}
+
 // get custom fields
 $prefix = 'nomad_';
 
@@ -102,8 +114,26 @@ $display_additional_info = $number_of_rooms || $checkin_time || $checkout_time |
         <?php the_post();?>
         <div class="sidebar_content ">
             <h1><?php the_title();?></h1>
-            <p class="nomad-tax-below-title"><strong><?php echo $location_tree ?></strong> &nbsp;&nbsp; <span class="nomad-sm"><?php echo $category_tree ?></span></p>
+            <p class="nomad-tax-below-title">
+                <strong><?php echo $location_tree ?></strong>
+                &nbsp;&nbsp;
+                <span class="nomad-sm"><?php echo $category_tree ?></span>
+            </p>
+
+            <?php if($features) : ?>
             <br class="clear" />
+            <div class="nomad-features" style="margin:auto;width:100%">
+                <?php for($x = 1; $x <= count($features); $x++) : ?>
+                <div class="one_fourth nomad-centered <?php if ($x % 4 == 0) { echo 'last'; } ?>">
+                    <p><i class="fa fa-image"></i><br/><?php echo $features[$x-1]->name ?></p>
+                </div>
+                <?php endfor ?>
+            </div>
+            <?php endif ?>
+
+            <div class="clear"></div>
+            <hr>
+
             <div class="single_tour_content">
                 <?php the_content();?>
             </div>
@@ -170,6 +200,21 @@ $display_additional_info = $number_of_rooms || $checkin_time || $checkout_time |
                 </div>
             </div>
 
+            <?php if($amenities) : ?>
+            <br class="clear" />
+            <hr>
+            <br class="clear" />
+            <h3>Amenities</h3>
+            <div class="nomad-amenities" style="margin:auto;width:100%">
+                <br/>
+                <ul class="<?php if(count($amenities) <= 4) { echo 'nomad-columnar-list1'; } elseif (count($amenities) > 4 && count($amenities) < 8) { echo 'nomad-columnar-list2'; } else { echo 'nomad-columnar-list3'; } ?>">
+                <?php for($x = 1; $x <= count($amenities); $x++) : ?>
+                    <li><i class="fa fa-image"></i> <?php echo $amenities[$x-1]->name ?></li>
+                <?php endfor ?>
+                </ul>
+            </div>
+            <?php endif ?>
+
             <?php if ($display_additional_info) : ?>
             <br class="clear" />
             <hr>
@@ -183,9 +228,6 @@ $display_additional_info = $number_of_rooms || $checkin_time || $checkout_time |
                     <div style="margin:auto;width:100%">
                         <div class="one_half">
                             <p>Near this place</p>
-                            <pre>
-                            <?php print_r($location_tree)?>
-                            </pre>
                         </div>
                         <div class="one_half last">
                             <p>

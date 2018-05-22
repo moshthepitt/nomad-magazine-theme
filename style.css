@@ -28,3 +28,48 @@ p.nomad-tax-below-title {
     color: #797778;
     font-size: 16px;
 }
+
+.nomad-features {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.nomad-features .fa {
+    font-size: 50px!important;
+}
+
+.nomad-centered {
+    text-align: center;
+}
+
+.nomad-amenities {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.nomad-amenities .fa {
+    font-size: 20px!important;
+}
+
+.nomad-amenities ul {
+    list-style: none;
+    margin-left: 0!important;
+}
+
+ul.nomad-columnar-list1 {
+    columns: 1;
+    -webkit-columns: 1;
+    -moz-columns: 1;
+}
+
+ul.nomad-columnar-list2 {
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+}
+
+ul.nomad-columnar-list3 {
+    columns: 3;
+    -webkit-columns: 3;
+    -moz-columns: 3;
+}

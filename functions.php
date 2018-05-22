@@ -38,3 +38,11 @@ function nomadGetHierarchicalTerms($term_name, $separator)
     $term_tree = implode($separator, $term_tree);
     return $term_tree;
 }
+
+function nomadSortArrayWithObjects($array, $property)
+{
+    usort($array, function ($a, $b) use ($property) {
+        return strcmp($a->$property, $b->$property);
+    });
+    return $array;
+}
