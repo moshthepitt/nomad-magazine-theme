@@ -74,6 +74,11 @@ $number_of_rooms = rwmb_meta($prefix . 'number_of_rooms');
 $checkin_time = rwmb_meta($prefix . 'checkin_time');
 $checkout_time = rwmb_meta($prefix . 'checkout_time');
 $pricing = rwmb_meta($prefix . 'pricing');
+
+$video = rwmb_meta($prefix . 'video');
+
+$awards = rwmb_meta($prefix . 'awards');
+$event_offers = rwmb_meta($prefix . 'events_offers');
 ?>
 <div class="sidebar_wrapper">
     <div class="sidebar_top"></div>
@@ -227,6 +232,39 @@ $pricing = rwmb_meta($prefix . 'pricing');
                     <li><i class="fa fa-image"></i> <?php echo $amenities[$x-1]->name ?></li>
                 <?php endfor ?>
                 </ul>
+            </div>
+            <?php endif ?>
+
+            <?php if($video) : ?>
+            <br class="clear" />
+            <hr>
+            <br class="clear" />
+            <h3>Video</h3>
+            <div class="nomad-video" style="margin:auto;width:100%">
+                <br/>
+                <?php echo $video; ?>
+            </div>
+            <?php endif ?>
+
+            <?php if($awards) : ?>
+            <br class="clear" />
+            <hr>
+            <br class="clear" />
+            <h3>Awards</h3>
+            <div class="nomad-awards" style="margin:auto;width:100%">
+                <br/>
+                <?php echo $awards; ?>
+            </div>
+            <?php endif ?>
+
+            <?php if($event_offers) : ?>
+            <br class="clear" />
+            <hr>
+            <br class="clear" />
+            <h3>Events & Offers</h3>
+            <div class="nomad-events-offers" style="margin:auto;width:100%">
+                <br/>
+                <?php echo $event_offers; ?>
             </div>
             <?php endif ?>
 
