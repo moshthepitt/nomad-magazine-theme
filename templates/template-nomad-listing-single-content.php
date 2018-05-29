@@ -115,9 +115,7 @@ $display_additional_info = $number_of_rooms || $checkin_time || $checkout_time |
         <div class="sidebar_content ">
             <h1><?php the_title();?></h1>
             <p class="nomad-tax-below-title">
-                <strong><?php echo $location_tree ?></strong>
-                &nbsp;&nbsp;
-                <span class="nomad-sm"><?php echo $category_tree ?></span>
+                <?php echo $category_tree ?>
             </p>
 
             <?php if($features) : ?>
