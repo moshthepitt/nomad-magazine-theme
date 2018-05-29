@@ -79,6 +79,14 @@ $video = rwmb_meta($prefix . 'video');
 
 $awards = rwmb_meta($prefix . 'awards');
 $event_offers = rwmb_meta($prefix . 'events_offers');
+
+$map_args = array(
+    'width'        => '100%',
+    'height'       => '400px',
+    'zoom'         => 14,
+    'marker'       => true,
+);
+$map = rwmb_meta($prefix . 'map', $map_args);
 ?>
 <div class="sidebar_wrapper">
     <div class="sidebar_top"></div>
@@ -232,6 +240,17 @@ $event_offers = rwmb_meta($prefix . 'events_offers');
                     <li><i class="fa fa-image"></i> <?php echo $amenities[$x-1]->name ?></li>
                 <?php endfor ?>
                 </ul>
+            </div>
+            <?php endif ?>
+
+            <?php if($map) : ?>
+            <br class="clear" />
+            <hr>
+            <br class="clear" />
+            <h3>Map</h3>
+            <div class="nomad-map" style="margin:auto;width:100%">
+                <br/>
+                <?php echo $map; ?>
             </div>
             <?php endif ?>
 
