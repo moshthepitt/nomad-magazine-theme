@@ -118,20 +118,6 @@ $display_additional_info = $number_of_rooms || $checkin_time || $checkout_time |
                 <?php echo $category_tree ?>
             </p>
 
-            <?php if($features) : ?>
-            <br class="clear" />
-            <div class="nomad-features" style="margin:auto;width:100%">
-                <?php for($x = 1; $x <= count($features); $x++) : ?>
-                <div class="one_fourth nomad-centered <?php if ($x % 4 == 0) { echo 'last'; } ?>">
-                    <p><i class="fa fa-image"></i><br/><?php echo $features[$x-1]->name ?></p>
-                </div>
-                <?php endfor ?>
-            </div>
-            <?php endif ?>
-
-            <div class="clear"></div>
-            <hr>
-
             <div class="single_tour_content">
                 <?php the_content();?>
             </div>
