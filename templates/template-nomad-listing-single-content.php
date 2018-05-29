@@ -90,19 +90,21 @@ $map = rwmb_meta($prefix . 'map', $map_args);
 
 $price = rwmb_meta($prefix . 'price');
 $discount_price = rwmb_meta($prefix . 'discount_price');
+
+$booking_form_id = rwmb_meta($prefix . 'booking_form');
+$booking_shortcode = '[contact-form-7 id="' . $booking_form_id . '" title="Booking Form"]';
 ?>
 <div class="sidebar_wrapper">
     <div class="sidebar_top"></div>
     <div class="sidebar">
         <div class="content">
-            <div class="single_tour_booking_wrapper themeborder external">
+            <?php if ($booking_form_id) : ?>
+            <div class="single_tour_booking_wrapper themeborder external nomad-booking-form">
                 <div class="single_tour_booking_external_wrapper">
-                    Some text goes here
-                    <a href="http://example.com" class="button" target="_blank">
-                        Book This Tour
-                    </a>
+                    <?php echo do_shortcode($booking_shortcode); ?>
                 </div>
             </div>
+            <?php endif ?>
 
             <?php if (is_active_sidebar('single-nomad-listings-sidebar')) : ?>
                 <br/>
