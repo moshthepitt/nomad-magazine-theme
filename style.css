@@ -65,6 +65,18 @@ p.nomad-tax-below-title {
     margin-left: 0!important;
 }
 
+.nomad-pricing {
+    text-align: center;
+    font-size: 35px;
+    color: #fff;
+    font-weight: 600;
+}
+
+.nomad-pricing-sm {
+    font-size: 23px;
+    font-weight: 400;
+}
+
 ul.nomad-columnar-list1 {
     columns: 1;
     -webkit-columns: 1;

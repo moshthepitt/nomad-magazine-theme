@@ -87,19 +87,14 @@ $map_args = array(
     'marker'       => true,
 );
 $map = rwmb_meta($prefix . 'map', $map_args);
+
+$price = rwmb_meta($prefix . 'price');
+$discount_price = rwmb_meta($prefix . 'discount_price');
 ?>
 <div class="sidebar_wrapper">
     <div class="sidebar_top"></div>
     <div class="sidebar">
         <div class="content">
-            <div class="single_tour_header_price">
-                <div class="single_tour_price">
-                    <span class="normal_price">
-                        $2,000 </span>
-                    $1,500 </div>
-                <div class="single_tour_per_person">
-                    Per Person </div>
-            </div>
             <div class="single_tour_booking_wrapper themeborder external">
                 <div class="single_tour_booking_external_wrapper">
                     Some text goes here

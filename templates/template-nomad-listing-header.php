@@ -22,16 +22,26 @@ if (has_post_thumbnail($post->ID)) {
     $featured_image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'large');
     $featured_image_url = $featured_image[0];
 }
+
+// get custom fields
+$prefix = 'nomad_';
+
+$price = rwmb_meta($prefix . 'price');
+$discount_price = rwmb_meta($prefix . 'discount_price');
 ?>
 	<div id="page_caption" class="hasbg parallax" style="background-image:url(<?php echo $featured_image_url; ?>)">
 		<div class="single_tour_header_content">
 			<div class="standard_wrapper">
-				<div class="single_tour_header_price">
-					<div class="single_tour_price">
-						<span class="normal_price">$2,000</span>$1,500
-					</div>
-					<div class="single_tour_per_person">Per Person</div>
+				<?php if (($price && $price > 0) || ($discount_price && $discount_price > 0)) : ?>
+				<div class="single_tour_header_price nomad-pricing">
+				<?php if ($discount_price && $discount_price > 0) : ?>
+					<span class="nomad-pricing-sm">Special Offer</span>
+								<?php echo number_format($discount_price, 0, '', ','); ?>
+				<?php else : ?>
+								<?php echo number_format($price, 0, '', ','); ?>
+				<?php endif ?>
 				</div>
+				<?php endif ?>
 			</div>
 		</div>
 	</div>
