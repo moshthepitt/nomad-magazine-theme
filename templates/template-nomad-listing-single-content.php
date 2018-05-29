@@ -74,8 +74,6 @@ $number_of_rooms = rwmb_meta($prefix . 'number_of_rooms');
 $checkin_time = rwmb_meta($prefix . 'checkin_time');
 $checkout_time = rwmb_meta($prefix . 'checkout_time');
 $pricing = rwmb_meta($prefix . 'pricing');
-$nearby_things = rwmb_meta($prefix . 'nearby');
-$display_additional_info = $number_of_rooms || $checkin_time || $checkout_time || $pricing || $nearby_things;
 ?>
 <div class="sidebar_wrapper">
     <div class="sidebar_top"></div>
@@ -126,26 +124,22 @@ $display_additional_info = $number_of_rooms || $checkin_time || $checkout_time |
             <hr>
             <br class="clear" />
 
-            <h3>Contact Information</h3>
+            <h3>Contact & Info</h3>
 
-            <div style="margin:auto;width:100%">
-                <div class="one_third">
+            <div class="nomad-contact-info" style="margin:auto;width:100%">
+                <div class="one_half">
                     <?php if ($locations_list) : ?>
-                        <p><strong>Location</strong><br/><?php echo $locations_list; ?></p>
+                        <p class="nomad-location-tree"><strong>Location</strong><br/><?php echo $location_tree ?></p>
                     <?php endif?>
                     <?php if ($phone_numbers) : ?>
                         <p><strong>Phone</strong><br/><?php echo $phone_numbers; ?></p>
                     <?php endif?>
-                </div>
-                <div class="one_third">
                     <?php if ($email) : ?>
                         <p><strong>Email</strong><br/><?php echo $email; ?></p>
                     <?php endif?>
                     <?php if ($website) : ?>
                         <p><strong>Website</strong><br/><?php echo $website; ?></p>
                     <?php endif?>
-                </div>
-                <div class="one_third last">
                     <?php if ($display_social) : ?>
                     <p><strong>Social Profiles</strong>
                     <div class="social_wrapper shortcode light small">
@@ -182,51 +176,8 @@ $display_additional_info = $number_of_rooms || $checkin_time || $checkout_time |
                     </div>
                     <?php endif?>
                 </div>
-            </div>
-
-            <?php if($amenities) : ?>
-            <br class="clear" />
-            <hr>
-            <br class="clear" />
-            <h3>Amenities</h3>
-            <div class="nomad-amenities" style="margin:auto;width:100%">
-                <br/>
-                <ul class="<?php if(count($amenities) <= 4) { echo 'nomad-columnar-list1'; } elseif (count($amenities) > 4 && count($amenities) < 8) { echo 'nomad-columnar-list2'; } else { echo 'nomad-columnar-list3'; } ?>">
-                <?php for($x = 1; $x <= count($amenities); $x++) : ?>
-                    <li><i class="fa fa-image"></i> <?php echo $amenities[$x-1]->name ?></li>
-                <?php endfor ?>
-                </ul>
-            </div>
-            <?php endif ?>
-
-            <?php if ($display_additional_info) : ?>
-            <br class="clear" />
-            <hr>
-            <br class="clear" />
-
-            <h3>Additional Information</h3>
-
-            <div style="margin:auto;width:100%">
-                <?php if ($nearby_things) : ?>
-                <div class="one_half">
-                    <div style="margin:auto;width:100%">
-                        <div class="one_half">
-                            <p>Near this place</p>
-                        </div>
-                        <div class="one_half last">
-                            <p>
-                                <?php foreach ($nearby_things as $nearby_thing) : ?>
-                                    <strong><?php echo $nearby_thing[0]; ?></strong><br/>
-                                <?php endforeach?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
                 <div class="one_half last">
-                <?php else: ?>
-                <div class="one_half">
-                <?php endif?>
-                <div style="margin:auto;width:100%">
+                    <div style="margin:auto;width:100%">
                         <div class="one_half">
                             <p>
                                 <?php if ($pricing) : ?>
@@ -262,7 +213,22 @@ $display_additional_info = $number_of_rooms || $checkin_time || $checkout_time |
                     </div>
                 </div>
             </div>
-            <?php endif?>
+            <br class="clear" />
+
+            <?php if($amenities) : ?>
+            <br class="clear" />
+            <hr>
+            <br class="clear" />
+            <h3>Amenities</h3>
+            <div class="nomad-amenities" style="margin:auto;width:100%">
+                <br/>
+                <ul class="<?php if(count($amenities) <= 4) { echo 'nomad-columnar-list1'; } elseif (count($amenities) > 4 && count($amenities) < 8) { echo 'nomad-columnar-list2'; } else { echo 'nomad-columnar-list3'; } ?>">
+                <?php for($x = 1; $x <= count($amenities); $x++) : ?>
+                    <li><i class="fa fa-image"></i> <?php echo $amenities[$x-1]->name ?></li>
+                <?php endfor ?>
+                </ul>
+            </div>
+            <?php endif ?>
 
             <?php
             //Display listing comments

@@ -23,11 +23,19 @@ p.nomad-tax-below-title {
     color: #4b4b4d;
     cursor: default;
 }
+
 .nomad-tax-below-title .nomad-sm,
 .nomad-tax-below-title .nomad-sm a,
 .nomad-tax-below-title .nomad-sm a:hover {
     color: #797778;
     font-size: 16px;
+}
+
+.nomad-location-tree,
+.nomad-location-tree a,
+.nomad-location-tree a:hover {
+    color: #4b4b4d;
+    cursor: default;
 }
 
 .nomad-features {
