@@ -279,7 +279,7 @@ $booking_shortcode = '[contact-form-7 id="' . $booking_form_id . '" title="Booki
             <h3>Video</h3>
             <div class="nomad-video" style="margin:auto;width:100%">
                 <br/>
-                <?php echo $video; ?>
+                <div class='nomad-embed-container'><?php echo $video; ?></div>
             </div>
             <?php endif ?>
 
