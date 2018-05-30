@@ -98,6 +98,20 @@ $booking_shortcode = '[contact-form-7 id="' . $booking_form_id . '" title="Booki
     <div class="sidebar_top"></div>
     <div class="sidebar">
         <div class="content">
+            <div class="single_tour_header_content">
+                <div class="standard_wrapper">
+                    <?php if (($price && $price > 0) || ($discount_price && $discount_price > 0)) : ?>
+                    <div class="single_tour_header_price nomad-pricing">
+                    <?php if ($discount_price && $discount_price > 0) : ?>
+                        <span class="nomad-pricing-sm">Special Offer</span>
+                                    <?php echo number_format($discount_price, 0, '', ','); ?>
+                    <?php else : ?>
+                                    <?php echo number_format($price, 0, '', ','); ?>
+                    <?php endif ?>
+                    </div>
+                    <?php endif ?>
+                </div>
+            </div>
             <?php if ($booking_form_id) : ?>
             <div class="single_tour_booking_wrapper themeborder external nomad-booking-form">
                 <div class="single_tour_booking_external_wrapper">
@@ -232,7 +246,14 @@ $booking_shortcode = '[contact-form-7 id="' . $booking_form_id . '" title="Booki
             <h3>Amenities</h3>
             <div class="nomad-amenities" style="margin:auto;width:100%">
                 <br/>
-                <ul class="<?php if(count($amenities) <= 4) { echo 'nomad-columnar-list1'; } elseif (count($amenities) > 4 && count($amenities) < 8) { echo 'nomad-columnar-list2'; } else { echo 'nomad-columnar-list3'; } ?>">
+                <ul class="<?php
+                if (count($amenities) <= 4) {
+                    echo 'nomad-columnar-list1';
+                } elseif (count($amenities) > 4 && count($amenities) < 8) {
+                    echo 'nomad-columnar-list2';
+                } else {
+                    echo 'nomad-columnar-list3';
+                } ?>">
                 <?php for($x = 1; $x <= count($amenities); $x++) : ?>
                     <li><i class="fa fa-image"></i> <?php echo $amenities[$x-1]->name ?></li>
                 <?php endfor ?>

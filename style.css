@@ -94,3 +94,11 @@ ul.nomad-columnar-list3 {
     -webkit-columns: 3;
     -moz-columns: 3;
 }
+
+body.single-nomad-listing #page_caption {
+    margin-bottom: 0;
+}
+
+body.single-nomad-listing #page_content_wrapper .inner .sidebar_content {
+    margin-top: 40px;
+}
