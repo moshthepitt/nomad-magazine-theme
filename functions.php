@@ -12,11 +12,34 @@
  */
 // Add parent theme style.css
 add_action('wp_enqueue_scripts', 'enqueueParentStyles');
+add_action('wp_enqueue_scripts', 'enqueueNomadStuff');
 
 function enqueueParentStyles()
 {
     wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
 }
+
+function enqueueNomadStuff() {
+    wp_enqueue_style(
+        'bxslider',
+        get_stylesheet_directory_uri() . '/assets/bxslider/jquery.bxslider.css'
+    );
+    wp_enqueue_script(
+        'bxslider',
+        get_stylesheet_directory_uri() . '/assets/bxslider/jquery.bxslider.min.js',
+        array(),
+        '1.0.0',
+        true
+    );
+    wp_enqueue_script(
+        'nomad',
+        get_stylesheet_directory_uri() . '/assets/nomad.js',
+        array(),
+        '1.0.0',
+        true
+    );
+}
+
 
 function nomadGetHierarchicalTerms($term_name, $separator)
 {

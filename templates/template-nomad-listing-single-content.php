@@ -77,6 +77,8 @@ $pricing = rwmb_meta($prefix . 'pricing');
 
 $video = rwmb_meta($prefix . 'video');
 
+$gallery_images = rwmb_meta($prefix . 'gallery', array('size' => 'large'));
+
 $awards = rwmb_meta($prefix . 'awards');
 $event_offers = rwmb_meta($prefix . 'events_offers');
 
@@ -258,6 +260,23 @@ $booking_shortcode = '[contact-form-7 id="' . $booking_form_id . '" title="Booki
                     <li><i class="fa fa-image"></i> <?php echo $amenities[$x-1]->name ?></li>
                 <?php endfor ?>
                 </ul>
+            </div>
+            <?php endif ?>
+
+            <?php if($gallery_images) : ?>
+            <br class="clear" />
+            <hr>
+            <br class="clear" />
+            <h3>Photo Gallery</h3>
+            <br class="clear" />
+            <div class="nomad-gallery" style="margin:auto;width:100%">
+                <div class="nomad-slider-holder">
+                    <?php foreach($gallery_images as $image) : ?>
+                        <div>
+                            <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>">
+                        </div>
+                    <?php endforeach ?>
+                </div>
             </div>
             <?php endif ?>
 
