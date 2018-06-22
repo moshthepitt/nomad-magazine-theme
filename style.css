@@ -38,6 +38,18 @@ p.nomad-tax-below-title {
     cursor: default;
 }
 
+.nomad-listings-grid .nomad-location-tree {
+    padding-top: 0.7em;
+    padding-bottom: 0.5em;
+}
+
+.nomad-related .sub_title {
+    border:none;
+    font-size: 25px;
+    font-weight: 600;
+    cursor: default;
+}
+
 .nomad-features {
     font-size: 16px;
     font-weight: 400;

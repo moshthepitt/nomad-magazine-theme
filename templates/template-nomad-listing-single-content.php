@@ -366,6 +366,11 @@ $booking_shortcode = '[contact-form-7 id="' . $booking_form_id . '" title="Booki
             <?php
             }
             ?>
+
+            <br class="clear" />
+            <br class="clear" />
+            <br class="clear" />
+            <hr>
         </div>
     <?php endwhile;?>
 <?php endif;?>

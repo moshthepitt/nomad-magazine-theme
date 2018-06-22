@@ -1,8 +1,14 @@
 <?php
 /**
- * Template file for displaying a single Nomad listing.
+ * Single Listing Template
  *
- * @package WordPress
+ * Template file for single nomad listings.
+ *
+ * @category Theme
+ * @package  Nomad_Magazine_Theme
+ * @author   Kelvin Jayanoris <kelvin@jayanoris.com>
+ * @license  https://github.com/moshthepitt/nomad-magazine-theme/blob/master/LICENSE GPL-2.0+
+ * @link     https://github.com/moshthepitt/nomad-magazine-theme
  */
 ?>
 <?php
@@ -20,6 +26,7 @@ get_template_part("/templates/template-nomad-listing-header");
         </div>
         <!-- End main content -->
     </div>
+    <?php get_template_part("/templates/template-nomad-listing-related"); ?>
 <br class="clear"/>
 </div>
 <?php
