@@ -76,6 +76,7 @@ $checkout_time = rwmb_meta($prefix . 'checkout_time');
 $pricing = rwmb_meta($prefix . 'pricing');
 
 $video = rwmb_meta($prefix . 'video');
+$video_value = rwmb_get_value($prefix . 'video');
 
 $gallery_images = rwmb_meta($prefix . 'gallery', array('size' => 'large'));
 
@@ -291,7 +292,7 @@ $booking_shortcode = '[contact-form-7 id="' . $booking_form_id . '" title="Booki
             </div>
             <?php endif ?>
 
-            <?php if($video) : ?>
+            <?php if($video_value) : ?>
             <br class="clear" />
             <hr>
             <br class="clear" />
