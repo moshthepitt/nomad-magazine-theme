@@ -70,6 +70,8 @@ $instagram = rwmb_meta($prefix . 'instagram');
 $linkedin = rwmb_meta($prefix . 'linkedin');
 $display_social = $facebook || $twitter || $instagram || $linkedin;
 
+$display_contact = $display_social || $email || $website || $phone_numbers || $locations_list;
+
 $number_of_rooms = rwmb_meta($prefix . 'number_of_rooms');
 $checkin_time = rwmb_meta($prefix . 'checkin_time');
 $checkout_time = rwmb_meta($prefix . 'checkout_time');
@@ -147,6 +149,7 @@ $booking_shortcode = '[contact-form-7 id="' . $booking_form_id . '" title="Booki
                 <?php the_content();?>
             </div>
 
+            <?php if($display_contact) : ?>
             <br class="clear" />
             <hr>
             <br class="clear" />
@@ -241,6 +244,7 @@ $booking_shortcode = '[contact-form-7 id="' . $booking_form_id . '" title="Booki
                 </div>
             </div>
             <br class="clear" />
+            <?php endif ?>
 
             <?php if($amenities) : ?>
             <br class="clear" />
