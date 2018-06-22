@@ -16,7 +16,22 @@ $tax_base = 'nomad-';
 $separator = ', ';
 
 // categories
-$category_tree = nomadGetHierarchicalTerms($tax_base . 'listing-item-category', $separator);
+$cats = wp_get_object_terms(
+    $post->ID,
+    $tax_base . 'listing-item-category',
+    array('fields' => 'ids')
+);
+if ($cats) {
+    $cat_ids = implode(',', $cats);
+    $category_tree = nomadGetHierarchicalTerms(
+        $term_name = $tax_base . 'listing-item-category',
+        $term_ids = $cat_ids,
+        $separator = $separator
+    );
+} else {
+    $category_tree = null;
+}
+
 
 // locations
 $locations = get_the_terms($post->ID, $tax_base . 'listing-item-location');
@@ -29,12 +44,24 @@ if (is_array($locations)) {
             }, $locations
         )
     );
+
+    $location_terms = wp_get_object_terms(
+        $post->ID,
+        $tax_base . 'listing-item-location',
+        array('fields' => 'ids')
+    );
+    $location_ids = implode(',', $location_terms);
+    // locations tree
+    $location_tree = nomadGetHierarchicalTerms(
+        $term_name = $tax_base . 'listing-item-location',
+        $term_ids = $location_ids,
+        $separator = $separator
+    );
+} else {
+    $location_tree = null;
 }
 
-// locations tree
-$location_tree = nomadGetHierarchicalTerms($tax_base . 'listing-item-location', $separator);
-
-// featutes
+// features
 $features = get_the_terms($post->ID, $tax_base . 'listing-item-feature');
 if ($features) {
     $features = nomadSortArrayWithObjects($features, 'name');

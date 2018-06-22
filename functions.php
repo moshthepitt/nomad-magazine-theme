@@ -41,7 +41,7 @@ function enqueueNomadStuff() {
 }
 
 
-function nomadGetHierarchicalTerms($term_name, $separator)
+function nomadGetHierarchicalTerms($term_name, $term_ids=null, $separator=', ')
 {
     $term_tree_args = array(
         'taxonomy' => $term_name,
@@ -54,6 +54,9 @@ function nomadGetHierarchicalTerms($term_name, $separator)
         'style' => 'none',
         'echo' => false,
     );
+    if ($term_ids) {
+        $term_tree_args['include'] = $term_ids;
+    }
     $term_tree = wp_list_categories($term_tree_args);
     $term_tree = rtrim(trim(str_replace($separator, $separator, $term_tree)), $separator);
     $term_tree = explode($separator, $term_tree);
