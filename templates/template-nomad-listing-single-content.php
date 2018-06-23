@@ -112,6 +112,7 @@ $gallery_images = rwmb_meta($prefix . 'gallery', array('size' => 'large'));
 $awards = rwmb_meta($prefix . 'awards');
 $event_offers = rwmb_meta($prefix . 'events_offers');
 
+$address = rwmb_meta($prefix . 'address');
 $map_args = array(
     'width'        => '100%',
     'height'       => '400px',
@@ -312,7 +313,7 @@ $booking_shortcode = '[contact-form-7 id="' . $booking_form_id . '" title="Booki
             </div>
             <?php endif ?>
 
-            <?php if($map) : ?>
+            <?php if($map && $address) : ?>
             <br class="clear" />
             <hr>
             <br class="clear" />
