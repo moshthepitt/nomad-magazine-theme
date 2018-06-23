@@ -1,4 +1,15 @@
 <?php
+/**
+ * Single Listing Top Menu Template
+ *
+ * Top Menu template file for single nomad listings.
+ *
+ * @category Theme
+ * @package  Nomad_Magazine_Theme
+ * @author   Kelvin Jayanoris <kelvin@jayanoris.com>
+ * @license  https://github.com/moshthepitt/nomad-magazine-theme/blob/master/LICENSE GPL-2.0+
+ * @link     https://github.com/moshthepitt/nomad-magazine-theme
+ */
 $nomad_transparent_bg = is_singular('nomad-listing');
 //Get page ID
 if (is_object($post)) {
