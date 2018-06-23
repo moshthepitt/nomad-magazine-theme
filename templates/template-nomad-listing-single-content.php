@@ -290,7 +290,35 @@ $booking_shortcode = '[contact-form-7 id="' . $booking_form_id . '" title="Booki
                     echo 'nomad-columnar-list3';
                 } ?>">
                 <?php for($x = 1; $x <= count($amenities); $x++) : ?>
-                    <li><i class="fa fa-image"></i> <?php echo $amenities[$x-1]->name ?></li>
+                    <?php
+                        $the_amenity = $amenities[$x-1];
+                        $amenity_images = rwmb_meta(
+                            $prefix . $tax_base . 'listing-item-amenity',
+                            array(
+                                'object_type' => 'term',
+                                'size' => 'thumbnail',
+                                'limit' => 1
+                            ),
+                            $the_amenity->term_id
+                        );
+                        if (is_array($amenity_images) && !empty($amenity_images)) {
+                            $amenity_image = $amenity_images[0];
+                        } else {
+                            $amenity_image = null;
+                        }
+                    ?>
+                    <li>
+                        <?php if($amenity_image) : ?>
+                        <img
+                            src="<?php echo $amenity_image['url']; ?>"
+                            alt="<?php echo $amenity_image['alt']; ?>"
+                            width="25"
+                            height="25"
+                            class="img-responsive nomad-listings-amenity-image"
+                        />
+                        <?php endif ?>
+                        <?php echo $the_amenity->name ?>
+                    </li>
                 <?php endfor ?>
                 </ul>
             </div>
