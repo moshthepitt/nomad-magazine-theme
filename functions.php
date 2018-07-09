@@ -17,6 +17,14 @@ add_action('wp_enqueue_scripts', 'enqueueNomadStuff');
 function enqueueParentStyles()
 {
     wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
+    // remove this as it is not https safe
+    wp_dequeue_style('fontawesome-stars');
+    // add it back in, safely
+    wp_enqueue_style(
+        "fontawesome-stars-nomad",
+        get_stylesheet_directory_uri() . "/assets/fontawesome-stars-o.css",
+        false
+    );
 }
 
 function enqueueNomadStuff()
@@ -90,12 +98,10 @@ add_action('comment_form_after_fields', 'nomadtheme_additional_fields');
 
 function nomadtheme_additional_fields()
 {
+
     $post_type = get_post_type();
 
     if ($post_type == 'nomad-listing') {
-        wp_enqueue_style("fontawesome-stars", get_stylesheet_directory_uri() . "/nomadtheme-custom-post/css/fontawesome-stars-o.css", false);
-        wp_enqueue_script('barrating', get_stylesheet_directory_uri() . '/nomadtheme-custom-post/js/jquery.barrating.js', false);
-
         echo '<p class="comment-form-rating">' .
         '<label for="accomodation_rating">' . esc_html__('Accomodation', 'nomadtheme') . '</label>
 		<span class="commentratingbox">
