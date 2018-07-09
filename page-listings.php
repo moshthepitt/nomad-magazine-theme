@@ -37,7 +37,7 @@ $grandtour_page_content_class = grandtour_get_page_content_class();
 get_template_part("/templates/template-header");
 
 //Include custom tour search feature
-get_template_part("/templates/template-tour-search");
+// get_template_part("/templates/template-tour-search");
 ?>
 
 <!-- Begin content -->
