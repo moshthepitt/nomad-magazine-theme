@@ -5,7 +5,7 @@ description: Nomad Magazine theme, child theme of grandtour
 Author: Kelvin Jayanoris
 Author URI: http://jayanoris.com
 Template: grandtour
-Version: 0.1
+Version: 0.1.1
 License: GNU General Public License v3.0
 License URI: https://github.com/moshthepitt/nomad-magazine-theme/blob/master/LICENSE
 */
@@ -136,4 +136,21 @@ body.single-nomad-listing #page_content_wrapper .inner .sidebar_content {
 
 .nomad-gallery .bx-wrapper {
     margin-bottom: 30px;
+}
+
+.nomad-listings-search-form .one_third:not(.last) {
+    border: 1px solid #dce0e0;
+    border-radius: 5px;
+    background: #fff;
+    -webkit-transition: border-color linear .3s;
+    -moz-transition: border-color linear .3s;
+    -o-transition: border-color linear .3s;
+    transition: border-color linear .3s;
+}
+
+.nomad-listings-search-form .one_third input,
+.nomad-listings-search-form .one_third select {
+    width: calc(100% - 30px);
+    border: 0;
+    box-sizing: border-box;
 }
