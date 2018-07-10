@@ -387,7 +387,6 @@ $booking_shortcode = '[contact-form-7 id="' . $booking_form_id . '" title="Booki
 
             <?php
             //Display listing comments
-            // $xxx = kirki_get_option('tg_tour_single_review', 74);
             if (comments_open($post->ID)) {
             ?>
                 <div class="fullwidth_comment_wrapper sidebar">
