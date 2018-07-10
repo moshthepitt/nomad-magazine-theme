@@ -37,13 +37,17 @@ $grandtour_page_content_class = grandtour_get_page_content_class();
 get_template_part("/templates/template-header");
 
 //Include custom tour search feature
-// get_template_part("/templates/template-tour-search");
+get_template_part("/templates/template-nomad-listings-search");
 ?>
 
 <!-- Begin content -->
 <?php
 //Get all listings for paging
+$tax_base = 'nomad-';
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+$location = get_query_var('location', null);
+$keyword = get_query_var('q', null);
+
 $args = array(
     'post_type' => 'nomad-listing',
     'post__not_in' => array($post->ID),
@@ -51,6 +55,24 @@ $args = array(
     'ignore_sticky_posts' => 1,
     'orderby' => 'title',
 );
+
+if ($location && is_numeric($location)) {
+    $location_id = (int)$location;
+    $tax_query = array(
+        array(
+            'taxonomy' => $tax_base . 'listing-item-location',
+            'field'    => 'term_id',
+            'terms'    => $location_id,
+            'include_children' => true
+        ),
+    );
+    $args['tax_query'] = $tax_query;
+}
+
+if ($keyword) {
+    $args['s'] = $keyword;
+}
+
 $wp_query = new WP_Query($args);
 $current_photo_count = $wp_query->post_count;
 $all_photo_count = $wp_query->found_posts;
