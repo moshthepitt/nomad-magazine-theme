@@ -612,3 +612,34 @@ function nomadtheme_modify_comment($text)
 
     return $text;
 }
+
+function get_terms_hierarchical($terms, $output = '', $parent_id = 0, $level = 0, $selected = null) {
+    //Out Template
+    $outputTemplate = '<option value="%ID%" %SELECTED%>%PADDING%%NAME%</option>';
+
+    foreach ($terms as $term) {
+        if ($parent_id == $term->parent) {
+            //Replacing the template variables
+            $itemOutput = str_replace('%ID%', $term->term_id, $outputTemplate);
+            $itemOutput = str_replace('%PADDING%', str_pad('', $level*12, '&nbsp;&nbsp;'), $itemOutput);
+            $itemOutput = str_replace('%NAME%', $term->name, $itemOutput);
+
+            if ($selected && (int)$selected == $term->term_id) {
+                $itemOutput = str_replace('%SELECTED%', "selected=selected", $itemOutput);
+            } else {
+                $itemOutput = str_replace('%SELECTED%', "", $itemOutput);
+            }
+
+            $output .= $itemOutput;
+            $output = get_terms_hierarchical($terms, $output, $term->term_id, $level + 1, $selected = $selected);
+        }
+    }
+    return $output;
+}
+
+function add_query_vars_filter($vars) {
+    $vars[] = "location";
+    $vars[] = "q";
+    return $vars;
+}
+add_filter('query_vars', 'add_query_vars_filter');

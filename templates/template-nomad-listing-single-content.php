@@ -196,7 +196,7 @@ $booking_shortcode = '[contact-form-7 id="' . $booking_form_id . '" title="Booki
                         <p><strong>Email</strong><br/><?php echo $email; ?></p>
                     <?php endif?>
                     <?php if ($website) : ?>
-                        <p><strong>Website</strong><br/><?php echo $website; ?></p>
+                        <p><strong>Website</strong><br/><a href="<?php echo $website; ?>" target="_blank"><?php echo $website; ?></a></p>
                     <?php endif?>
                     <?php if ($display_social) : ?>
                     <p><strong>Social Profiles</strong>
@@ -387,7 +387,6 @@ $booking_shortcode = '[contact-form-7 id="' . $booking_form_id . '" title="Booki
 
             <?php
             //Display listing comments
-            // $xxx = kirki_get_option('tg_tour_single_review', 74);
             if (comments_open($post->ID)) {
             ?>
                 <div class="fullwidth_comment_wrapper sidebar">

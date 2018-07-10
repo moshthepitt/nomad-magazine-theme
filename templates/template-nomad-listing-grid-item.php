@@ -54,8 +54,8 @@ if (is_array($locations)) {
 $price = rwmb_meta($prefix . 'price');
 $discount_price = rwmb_meta($prefix . 'discount_price');
 ?>
-<div class="element grid classic3_cols nomad-listings-grid">
-    <div class="one_third gallery3 classic static filterable portfolio_type themeborder" data-id="post-168">
+<div class="element grid classic4_cols animated2">
+    <div class="one_fourth gallery4 classic static filterable portfolio_type themeborder" data-id="post-168">
         <?php if(!empty($small_image_url[0])) : ?>
         <a class="tour_image" href="<?php echo $permalink_url; ?>">
             <img src="<?php echo esc_url($small_image_url[0]); ?>" alt="<?php the_title(); ?>">
