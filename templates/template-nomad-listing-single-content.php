@@ -196,7 +196,7 @@ $booking_shortcode = '[contact-form-7 id="' . $booking_form_id . '" title="Booki
                         <p><strong>Email</strong><br/><?php echo $email; ?></p>
                     <?php endif?>
                     <?php if ($website) : ?>
-                        <p><strong>Website</strong><br/><?php echo $website; ?></p>
+                        <p><strong>Website</strong><br/><a href="<?php echo $website; ?>" target="_blank"><?php echo $website; ?></a></p>
                     <?php endif?>
                     <?php if ($display_social) : ?>
                     <p><strong>Social Profiles</strong>
